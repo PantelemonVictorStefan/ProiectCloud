@@ -1,0 +1,12 @@
+C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\bin\Debug\Tema4Cloud.Model.dll.config
+C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\bin\Debug\Tema4Cloud.Model.dll
+C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\bin\Debug\Tema4Cloud.Model.pdb
+C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\bin\Debug\EntityFramework.dll
+C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\bin\Debug\EntityFramework.xml
+C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\obj\Debug\Tema4Cloud.Model.csprojAssemblyReference.cache
+C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\obj\Debug\Tema4Cloud.Model.csproj.CoreCompileInputs.cache
+C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\obj\Debug\Tema4Cloud.Model.csproj.CopyComplete
+C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\obj\Debug\Tema4Cloud.Model.dll
+C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\obj\Debug\Tema4Cloud.Model.pdb
