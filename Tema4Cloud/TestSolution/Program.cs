@@ -12,11 +12,12 @@ namespace TestSolution
 
         public static void AddData()
         {
+            
             var acc = new Account();
             acc.Email = "victorbarosan@gmail.com";
             acc.Password = "parolastudent";
             acc.Username = "VictorSefuTau";
-            DataAccessAPI.AddAccount(acc);
+            new DataAccessAPI().AddAccount(acc);
 
             var ev = new Event();
             ev.Budget = 4000;
@@ -27,19 +28,19 @@ namespace TestSolution
             ev.Location = "Camera mea";
             ev.NumberOfParticipants = 22;
             ev.Title = "testare";
-    
 
-            DataAccessAPI.AddEvent(ev);
+
+            new DataAccessAPI().AddEvent(ev);
         }
 
         public static void ReadData()
         {
-            var events = DataAccessAPI.GetAllEvents();
-            var accounts = DataAccessAPI.GetAllAccounts();
+            var events = new DataAccessAPI().GetAllEvents();
+            var accounts = new DataAccessAPI().GetAllAccounts();
             Console.WriteLine("EVENTS:");
             foreach (var ev in events)
             {
-                Console.WriteLine("{0}  {1}",ev.Title,ev.Description);
+                Console.WriteLine("event title:{0}\n  Event description:{1}\nEvent participants:{2}\nEvent id:{3}",ev.Title,ev.Description,ev.NumberOfParticipants,ev.Id);
             }
             Console.WriteLine("ACCOUNTS:");
             foreach (var acc in accounts)
@@ -51,27 +52,27 @@ namespace TestSolution
 
         public static void UpdateData()
         {
-            var ev = DataAccessAPI.GetEventById(1);
+            var ev = new DataAccessAPI().GetAllEvents().First();
             ev.Title = "Testare update";
             ev.NumberOfParticipants++;
-            DataAccessAPI.UpdateEvent(ev);
+            new DataAccessAPI().UpdateEvent(ev);
 
-            var acc = DataAccessAPI.GetAccountById(1);
+            var acc = new DataAccessAPI().GetAllAccounts().First();
             acc.Username = "UpdatedUsername";
-            DataAccessAPI.UpdateAccount(acc);
+            new DataAccessAPI().UpdateAccount(acc);
         }
 
         public static void DeleteData()
         {
-            DataAccessAPI.DeleteEvent(1);
-            DataAccessAPI.DeleteAccount(1);
+            new DataAccessAPI().DeleteEvent(1);
+            new DataAccessAPI().DeleteAccount(1);
         }
 
         static void Main(string[] args)
         {
             //AddData();
             //ReadData();
-            //UpdateData();
+            UpdateData();
             //ReadData();
             //DeleteData();
             ReadData();

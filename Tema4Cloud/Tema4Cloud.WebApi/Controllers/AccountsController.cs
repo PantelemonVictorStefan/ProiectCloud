@@ -13,13 +13,13 @@ namespace Tema4Cloud.WebApi.Controllers
         // GET: api/Accounts
         public IEnumerable<Account> GetAll()
         {
-            return DataAccessAPI.GetAllAccounts();
+            return new DataAccessAPI().GetAllAccounts();
         }
 
         // GET: api/Accounts/5
         public Account Get(int id)
         {
-            return DataAccessAPI.GetAccountById(id);
+            return new DataAccessAPI().GetAccountById(id);
         }
 
         // POST: api/Accounts
@@ -35,7 +35,7 @@ namespace Tema4Cloud.WebApi.Controllers
         // DELETE: api/Accounts/5
         public void Delete(int id)
         {
-            DataAccessAPI.DeleteAccount(id);
+            new DataAccessAPI().DeleteAccount(id);
         }
     }
 }

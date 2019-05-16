@@ -13,13 +13,13 @@ namespace Tema4Cloud.WebApi.Controllers
         // GET: api/Event
         public IEnumerable<Event> GetAll()
         {
-            return DataAccessAPI.GetAllEvents();
+            return new DataAccessAPI().GetAllEvents();
         }
 
         // GET: api/Event/5
         public Event Get(int id)
         {
-            return DataAccessAPI.GetEventById(id);
+            return new DataAccessAPI().GetEventById(id);
         }
 
         // POST: api/Event
@@ -36,7 +36,7 @@ namespace Tema4Cloud.WebApi.Controllers
         // DELETE: api/Event/5
         public void Delete(int id)
         {
-            DataAccessAPI.DeleteEvent(id);
+            new DataAccessAPI().DeleteEvent(id);
         }
     }
 }

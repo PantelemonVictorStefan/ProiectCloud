@@ -13,11 +13,12 @@ namespace Tema4Cloud.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    internal partial class DataAccessModelContainer : DbContext
+    public partial class DataAccessModelContainer : DbContext
     {
         public DataAccessModelContainer()
             : base("name=DataAccessModelContainer")
         {
+            
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
