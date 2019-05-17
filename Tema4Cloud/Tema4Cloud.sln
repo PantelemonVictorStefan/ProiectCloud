@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tema4Cloud.Model", "Tema4Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSolution", "TestSolution\TestSolution.csproj", "{C2140CF6-05F7-48A1-9147-A2DB9D5E1083}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tema4Cloud.WebApi", "Tema4Cloud.WebApi\Tema4Cloud.WebApi.csproj", "{F78ABDFA-5E62-484A-B3E6-B46C97792784}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProiectCloud.Web", "ProiectCloud.Web\ProiectCloud.Web.csproj", "{C761FFB4-500A-4B1D-BDDF-23004F833035}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{C2140CF6-05F7-48A1-9147-A2DB9D5E1083}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2140CF6-05F7-48A1-9147-A2DB9D5E1083}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2140CF6-05F7-48A1-9147-A2DB9D5E1083}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F78ABDFA-5E62-484A-B3E6-B46C97792784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F78ABDFA-5E62-484A-B3E6-B46C97792784}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F78ABDFA-5E62-484A-B3E6-B46C97792784}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F78ABDFA-5E62-484A-B3E6-B46C97792784}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C761FFB4-500A-4B1D-BDDF-23004F833035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C761FFB4-500A-4B1D-BDDF-23004F833035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C761FFB4-500A-4B1D-BDDF-23004F833035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C761FFB4-500A-4B1D-BDDF-23004F833035}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
