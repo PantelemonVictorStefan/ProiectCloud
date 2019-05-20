@@ -1,42 +1,51 @@
-﻿using System;
+﻿using ProiectCloud.Web.Business;
+using ProiectCloud.Web.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+using System.Web;
+using System.Web.Mvc;
 using Tema4Cloud.Model;
 
 namespace ProiectCloud.Web.Controllers
 {
-    public class EventController : ApiController
+    public class EventController : Controller
     {
-        // GET: api/Event
-        public IEnumerable<Event> GetAll()
+        // GET: Event
+        public ActionResult Index()
         {
-            return new DataAccessAPI().GetAllEvents();
+            ViewBag.Message = "Your Events page.";
+
+            IEnumerable<EventDTO> events = new EventManager().GetEvents();
+
+
+            if (events == null)
+            {
+                events = Enumerable.Empty<EventDTO>();
+                ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+            }
+            return View(events);
+
+            //return View();
         }
 
-        // GET: api/Event/5
-        public Event Get(int id)
+
+        public ActionResult Details(int id)
         {
-            return new DataAccessAPI().GetEventById(id);
+            ViewBag.Message = "Your Events page.";
+
+            Event ev = new EventManager().GetEventById(id);
+
+
+            if (ev == null)
+            {
+                ev = new Event();
+                ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+            }
+            return View(ev);
+
+            //return View();
         }
 
-        // POST: api/Event
-        public void Post([FromBody]string value)
-        {
-
-        }
-
-        // PUT: api/Event/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Event/5
-        public void Delete(int id)
-        {
-            new DataAccessAPI().DeleteEvent(id);
-        }
     }
 }

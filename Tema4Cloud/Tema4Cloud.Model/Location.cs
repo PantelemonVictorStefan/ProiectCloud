@@ -12,17 +12,10 @@ namespace Tema4Cloud.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Event
+    public partial class Location
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Category { get; set; }
-        public int NumberOfParticipants { get; set; }
-        public int Budget { get; set; }
-        public int GatheredMoney { get; set; }
-        public System.DateTime DateOfEvent { get; set; }
-        public string Description { get; set; }
-    
-        public virtual Location Location { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
 }

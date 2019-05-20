@@ -11,7 +11,6 @@
           <ScalarProperty Name="Budget" ColumnName="Budget" />
           <ScalarProperty Name="GatheredMoney" ColumnName="GatheredMoney" />
           <ScalarProperty Name="DateOfEvent" ColumnName="DateOfEvent" />
-          <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -26,5 +25,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccessModel.Location)">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="EventLocation" TypeName="DataAccessModel.EventLocation" StoreEntitySet="Locations">
+      <EndProperty Name="Event">
+        <ScalarProperty Name="Id" ColumnName="EventLocation_Location_Id" />
+      </EndProperty>
+      <EndProperty Name="Location">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

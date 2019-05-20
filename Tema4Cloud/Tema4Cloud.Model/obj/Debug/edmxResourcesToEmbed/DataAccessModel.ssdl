@@ -3,6 +3,11 @@
   <EntityContainer Name="DataAccessModelStoreContainer">
     <EntitySet Name="Events" EntityType="DataAccessModel.Store.Events" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Accounts" EntityType="DataAccessModel.Store.Accounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Locations" EntityType="DataAccessModel.Store.Locations" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="EventLocation" Association="DataAccessModel.Store.EventLocation">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Events">
     <Key>
@@ -15,7 +20,6 @@
     <Property Name="Budget" Type="int" Nullable="false" />
     <Property Name="GatheredMoney" Type="int" Nullable="false" />
     <Property Name="DateOfEvent" Type="datetime" Nullable="false" />
-    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Accounts">
@@ -27,4 +31,27 @@
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+    <Property Name="EventLocation_Location_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="EventLocation">
+    <End Role="Event" Type="DataAccessModel.Store.Events" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Location" Type="DataAccessModel.Store.Locations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="EventLocation_Location_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

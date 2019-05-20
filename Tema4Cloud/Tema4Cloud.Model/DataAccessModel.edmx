@@ -8,6 +8,11 @@
   <EntityContainer Name="DataAccessModelStoreContainer">
     <EntitySet Name="Events" EntityType="DataAccessModel.Store.Events" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Accounts" EntityType="DataAccessModel.Store.Accounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Locations" EntityType="DataAccessModel.Store.Locations" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="EventLocation" Association="DataAccessModel.Store.EventLocation">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Events">
     <Key>
@@ -20,7 +25,6 @@
     <Property Name="Budget" Type="int" Nullable="false" />
     <Property Name="GatheredMoney" Type="int" Nullable="false" />
     <Property Name="DateOfEvent" Type="datetime" Nullable="false" />
-    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Accounts">
@@ -32,6 +36,29 @@
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+    <Property Name="EventLocation_Location_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="EventLocation">
+    <End Role="Event" Type="DataAccessModel.Store.Events" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Location" Type="DataAccessModel.Store.Locations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="EventLocation_Location_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -39,6 +66,11 @@
         <EntityContainer Name="DataAccessModelContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Events" EntityType="DataAccessModel.Event" />
           <EntitySet Name="Accounts" EntityType="DataAccessModel.Account" />
+          <EntitySet Name="Locations" EntityType="DataAccessModel.Location" />
+          <AssociationSet Name="EventLocation" Association="DataAccessModel.EventLocation">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Event">
           <Key>
@@ -51,8 +83,8 @@
           <Property Name="Budget" Type="Int32" Nullable="false" />
           <Property Name="GatheredMoney" Type="Int32" Nullable="false" />
           <Property Name="DateOfEvent" Type="DateTime" Nullable="false" />
-          <Property Name="Location" Type="String" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="DataAccessModel.EventLocation" FromRole="Event" ToRole="Location" />
         </EntityType>
         <EntityType Name="Account">
           <Key>
@@ -63,6 +95,21 @@
           <Property Name="Password" Type="String" Nullable="false" />
           <Property Name="Username" Type="String" Nullable="false" />
         </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+        </EntityType>
+        <Association Name="EventLocation">
+          <End Type="DataAccessModel.Event" Role="Event" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataAccessModel.Location" Role="Location" Multiplicity="1" >
+          </End>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -79,7 +126,6 @@
           <ScalarProperty Name="Budget" ColumnName="Budget" />
           <ScalarProperty Name="GatheredMoney" ColumnName="GatheredMoney" />
           <ScalarProperty Name="DateOfEvent" ColumnName="DateOfEvent" />
-          <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -94,6 +140,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccessModel.Location)">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="EventLocation" TypeName="DataAccessModel.EventLocation" StoreEntitySet="Locations">
+      <EndProperty Name="Event">
+        <ScalarProperty Name="Id" ColumnName="EventLocation_Location_Id" />
+      </EndProperty>
+      <EndProperty Name="Location">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

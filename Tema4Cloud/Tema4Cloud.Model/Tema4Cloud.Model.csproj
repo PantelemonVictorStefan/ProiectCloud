@@ -72,6 +72,9 @@
     <Compile Include="Event.cs">
       <DependentUpon>DataAccessModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Location.cs">
+      <DependentUpon>DataAccessModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

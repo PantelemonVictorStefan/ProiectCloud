@@ -18,7 +18,6 @@ namespace Tema4Cloud.Model
         public DataAccessModelContainer()
             : base("name=DataAccessModelContainer")
         {
-            
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -28,5 +27,6 @@ namespace Tema4Cloud.Model
     
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
     }
 }

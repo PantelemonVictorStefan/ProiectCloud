@@ -3,6 +3,11 @@
   <EntityContainer Name="DataAccessModelContainer" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Events" EntityType="DataAccessModel.Event" />
     <EntitySet Name="Accounts" EntityType="DataAccessModel.Account" />
+    <EntitySet Name="Locations" EntityType="DataAccessModel.Location" />
+    <AssociationSet Name="EventLocation" Association="DataAccessModel.EventLocation">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Event">
     <Key>
@@ -15,8 +20,8 @@
     <Property Name="Budget" Type="Int32" Nullable="false" />
     <Property Name="GatheredMoney" Type="Int32" Nullable="false" />
     <Property Name="DateOfEvent" Type="DateTime" Nullable="false" />
-    <Property Name="Location" Type="String" Nullable="false" />
     <Property Name="Description" Type="String" Nullable="false" />
+    <NavigationProperty Name="Location" Relationship="DataAccessModel.EventLocation" FromRole="Event" ToRole="Location" />
   </EntityType>
   <EntityType Name="Account">
     <Key>
@@ -27,4 +32,18 @@
     <Property Name="Password" Type="String" Nullable="false" />
     <Property Name="Username" Type="String" Nullable="false" />
   </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Latitude" Type="Double" Nullable="false" />
+    <Property Name="Longitude" Type="Double" Nullable="false" />
+  </EntityType>
+  <Association Name="EventLocation">
+    <End Type="DataAccessModel.Event" Role="Event" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DataAccessModel.Location" Role="Location" Multiplicity="1" />
+  </Association>
 </Schema>
