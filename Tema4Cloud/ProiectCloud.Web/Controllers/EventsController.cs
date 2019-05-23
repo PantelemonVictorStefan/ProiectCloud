@@ -33,9 +33,14 @@ namespace ProiectCloud.Web.Controllers
         }
 
         // POST: api/Event
-        public void Post([FromBody]string value)
+        /*public void Post([FromBody]string value)
         {
 
+        }*/
+
+        public void Post(Event ev)
+        {
+            new DataAccessAPI().AddEvent(ev);
         }
 
         // PUT: api/Event/5

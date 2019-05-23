@@ -53,7 +53,8 @@ namespace ProiectCloud.Web.Business
             Event ev = null;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50719/api/");
+                string url = System.Configuration.ConfigurationManager.AppSettings["BaseURL"];
+                client.BaseAddress = new Uri(url);
                 //HTTP GET
                 var responseTask = client.GetAsync("Events/" + id);
                 responseTask.Wait();
@@ -73,6 +74,30 @@ namespace ProiectCloud.Web.Business
                     return null;
                 }
                 return ev;
+            }
+        }
+
+        public bool AddEvent(Event ev)
+        {
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:50719/api/");
+                //HTTP POST
+                var responseTask = client.PostAsXmlAsync("Events/", ev);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+                    var x = result;
+                    return false;
+                }
             }
         }
 

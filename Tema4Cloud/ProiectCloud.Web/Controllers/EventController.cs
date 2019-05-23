@@ -1,5 +1,6 @@
 ﻿using ProiectCloud.Web.Business;
 using ProiectCloud.Web.Entities;
+using ProiectCloud.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,5 +48,27 @@ namespace ProiectCloud.Web.Controllers
             //return View();
         }
 
+        public ActionResult Create()
+        {
+            ViewBag.Message = "Create Event";
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(EventViewModel model)
+        {
+            ViewBag.Message = "Your Event";
+
+            if (ModelState.IsValid)
+            {
+                if (new EventManager().AddEvent(model.GetAsEvent()))
+                    return RedirectToAction("Index", "Home");
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
     }
 }
