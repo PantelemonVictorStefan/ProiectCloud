@@ -32,6 +32,8 @@ namespace ProiectCloud.Web.Models
             return new ApplicationDbContext();
         }
 
+        
+
         private void CreateRoles()
         {
             var roles = this.Roles.ToArray();
@@ -41,6 +43,8 @@ namespace ProiectCloud.Web.Models
                 admin.Name = "Admin";
                 this.Roles.Add(admin);
                 this.SaveChanges();
+
+                
             }
 
         }

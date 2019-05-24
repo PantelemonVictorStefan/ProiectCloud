@@ -48,6 +48,7 @@ namespace ProiectCloud.Web.Controllers
             //return View();
         }
 
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             ViewBag.Message = "Create Event";

@@ -82,7 +82,8 @@ namespace ProiectCloud.Web.Business
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50719/api/");
+                string url = System.Configuration.ConfigurationManager.AppSettings["BaseURL"];
+                client.BaseAddress = new Uri(url);
                 //HTTP POST
                 var responseTask = client.PostAsXmlAsync("Events/", ev);
                 responseTask.Wait();

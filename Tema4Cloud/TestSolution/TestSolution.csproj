@@ -58,6 +58,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProiectCloud.Web\ProiectCloud.Web.csproj">
+      <Project>{C761FFB4-500A-4B1D-BDDF-23004F833035}</Project>
+      <Name>ProiectCloud.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tema4Cloud.Model\Tema4Cloud.Model.csproj">
       <Project>{67DB0845-88E0-466F-819D-3C6F6160EBD8}</Project>
       <Name>Tema4Cloud.Model</Name>

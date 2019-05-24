@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/20/2019 17:50:08
+-- Date Created: 05/23/2019 18:27:20
 -- Generated from EDMX file: C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\DataAccessModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [ProiectCloudDB];
+USE [ProiectCloud];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO

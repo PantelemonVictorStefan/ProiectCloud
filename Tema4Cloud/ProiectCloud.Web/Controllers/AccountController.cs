@@ -68,8 +68,11 @@ namespace ProiectCloud.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            //var currentUser = UserManager.FindByEmail(model.Email);
+            //var roleresult = UserManager.AddToRole(currentUser.Id, "Admin");
             if (!ModelState.IsValid)
             {
+                
                 return View(model);
             }
 

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using ProiectCloud.Web;
+using ProiectCloud.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using Tema4Cloud.Model;
@@ -93,6 +96,7 @@ namespace TestSolution
                 api.AddEvent(ev);
             }
         }
+        
 
         static void Main(string[] args)
         {
@@ -100,7 +104,7 @@ namespace TestSolution
             //ReadData();
             //UpdateData();
             //ReadData();
-            //DeleteData();
+            DeleteData();
             //PopulateDatabase();
             ReadData();
         }
