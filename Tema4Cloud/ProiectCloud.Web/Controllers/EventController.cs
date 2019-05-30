@@ -71,5 +71,17 @@ namespace ProiectCloud.Web.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult AddComment(CommentViewModel com)
+        {
+            
+           com.Author = HttpContext.User.Identity.Name;
+
+           return RedirectToAction("Details/"+com.EventId);
+        }
+        
     }
 }

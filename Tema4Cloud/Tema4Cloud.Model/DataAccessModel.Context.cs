@@ -28,5 +28,6 @@ namespace Tema4Cloud.Model
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
     }
 }

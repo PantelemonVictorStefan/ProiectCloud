@@ -27,6 +27,8 @@ namespace ProiectCloud.Web.Entities
 
         public Location Location { get; set; }
 
+        public List<Comment> Comments { get; set; }
+
         public EventDTO()
         {
 
@@ -44,6 +46,8 @@ namespace ProiectCloud.Web.Entities
             Description = ev.Description;
             //Location = new Location(ev.Location);
             Location = ev.Location;
+
+            Comments = new List<Comment>();
 
         }
 

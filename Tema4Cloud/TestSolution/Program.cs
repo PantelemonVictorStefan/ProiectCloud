@@ -15,12 +15,19 @@ namespace TestSolution
 
         public static void AddData()
         {
-            
-           /* var acc = new Account();
-            acc.Email = "victorbarosan@gmail.com";
-            acc.Password = "parolastudent";
-            acc.Username = "VictorSefuTau";
-            new DataAccessAPI().AddAccount(acc);
+
+            /* var acc = new Account();
+             acc.Email = "victorbarosan@gmail.com";
+             acc.Password = "parolastudent";
+             acc.Username = "VictorSefuTau";
+             new DataAccessAPI().AddAccount(acc);
+             */
+
+            Location location = new Location();
+            location.Latitude = 55;
+            location.Longitude = 50;
+
+
 
             var ev = new Event();
             ev.Budget = 4000;
@@ -28,12 +35,21 @@ namespace TestSolution
             ev.DateOfEvent = DateTime.Now;
             ev.Description = "Testarea adaugarii datelor in baza de date";
             ev.GatheredMoney = 2416;
-            ev.Location = "Camera mea";
+            ev.Location = location;
             ev.NumberOfParticipants = 22;
             ev.Title = "testare";
 
+            for (int i = 0; i < 3; i++)
+            {
+                var com = new Comment();
+                com.Author = "Marcel" + i;
+                com.Date = DateTime.Now;
+                com.Text = "Comment Text" + i;
+                ev.Comments.Add(com);
+            }
 
-            new DataAccessAPI().AddEvent(ev);*/
+
+            new DataAccessAPI().AddEvent(ev);
         }
 
         public static void ReadData()
@@ -58,11 +74,19 @@ namespace TestSolution
             var ev = new DataAccessAPI().GetAllEvents().First();
             ev.Title = "Testare update";
             ev.NumberOfParticipants++;
+            ev.Location.Latitude += 10;
+
+            var com = new Comment();
+            com.Author = "Marcel Problema";
+            com.Date = DateTime.Now;
+            com.Text = "Marcel baga comentariu!";
+
+            ev.Comments.Add(com);
             new DataAccessAPI().UpdateEvent(ev);
 
-            var acc = new DataAccessAPI().GetAllAccounts().First();
+            /*var acc = new DataAccessAPI().GetAllAccounts().First();
             acc.Username = "UpdatedUsername";
-            new DataAccessAPI().UpdateAccount(acc);
+            new DataAccessAPI().UpdateAccount(acc);*/
         }
 
         public static void DeleteData()
@@ -102,9 +126,9 @@ namespace TestSolution
         {
             //AddData();
             //ReadData();
-            //UpdateData();
+            UpdateData();
             //ReadData();
-            DeleteData();
+            //DeleteData();
             //PopulateDatabase();
             ReadData();
         }

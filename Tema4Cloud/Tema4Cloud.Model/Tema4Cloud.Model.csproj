@@ -53,6 +53,9 @@
     <Compile Include="Account.cs">
       <DependentUpon>DataAccessModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Comment.cs">
+      <DependentUpon>DataAccessModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessAPI.cs" />
     <Compile Include="DataAccessModel.Context.cs">
       <AutoGen>True</AutoGen>

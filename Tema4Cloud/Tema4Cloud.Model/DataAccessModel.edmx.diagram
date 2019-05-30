@@ -5,10 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="82fdf9b555044547aba52562ff04482a" Name="Diagram1" >
-        <EntityTypeShape EntityType="DataAccessModel.Event" Width="1.5" PointX="1.875" PointY="1.75" />
+        <EntityTypeShape EntityType="DataAccessModel.Event" Width="1.5" PointX="1.875" PointY="1.5" />
         <EntityTypeShape EntityType="DataAccessModel.Account" Width="1.5" PointX="9.25" PointY="2.25" />
-        <EntityTypeShape EntityType="DataAccessModel.Location" Width="1.5" PointX="5.125" PointY="2.25" />
+        <EntityTypeShape EntityType="DataAccessModel.Location" Width="1.5" PointX="2.375" PointY="5.25" />
         <AssociationConnector Association="DataAccessModel.EventLocation" />
+        <EntityTypeShape EntityType="DataAccessModel.Comment" Width="1.5" PointX="6.25" PointY="1.875" />
+        <AssociationConnector Association="DataAccessModel.EventComment" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

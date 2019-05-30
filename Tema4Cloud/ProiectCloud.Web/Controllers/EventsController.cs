@@ -44,8 +44,9 @@ namespace ProiectCloud.Web.Controllers
         }
 
         // PUT: api/Event/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(Event ev)
         {
+            new DataAccessAPI().UpdateEvent(ev);
         }
 
         // DELETE: api/Event/5

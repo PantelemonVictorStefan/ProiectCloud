@@ -102,5 +102,9 @@ namespace ProiectCloud.Web.Business
             }
         }
 
+        public void AddComment(Comment comment)
+        {
+        }
+
     }
 }

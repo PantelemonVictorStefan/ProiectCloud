@@ -34,6 +34,8 @@ namespace Tema4Cloud.Model
             //oldEvent = e;
 
             ctx.Entry(oldEvent).CurrentValues.SetValues(e);
+            oldEvent.Location = e.Location;
+            //oldEvent.
             ctx.SaveChanges();
 
         }

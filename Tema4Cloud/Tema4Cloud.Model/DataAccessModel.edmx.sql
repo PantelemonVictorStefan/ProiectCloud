@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/23/2019 18:27:20
+-- Date Created: 05/27/2019 17:29:26
 -- Generated from EDMX file: C:\Users\MasterCode\source\repos\Tema4Cloud\Tema4Cloud.Model\DataAccessModel.edmx
 -- --------------------------------------------------
 
@@ -70,6 +70,16 @@ CREATE TABLE [dbo].[Locations] (
 );
 GO
 
+-- Creating table 'Comments'
+CREATE TABLE [dbo].[Comments] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Author] nvarchar(max)  NOT NULL,
+    [Text] nvarchar(max)  NOT NULL,
+    [Date] datetime  NOT NULL,
+    [EventId] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -92,6 +102,12 @@ ADD CONSTRAINT [PK_Locations]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'Comments'
+ALTER TABLE [dbo].[Comments]
+ADD CONSTRAINT [PK_Comments]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
@@ -109,6 +125,21 @@ GO
 CREATE INDEX [IX_FK_EventLocation]
 ON [dbo].[Locations]
     ([EventLocation_Location_Id]);
+GO
+
+-- Creating foreign key on [EventId] in table 'Comments'
+ALTER TABLE [dbo].[Comments]
+ADD CONSTRAINT [FK_EventComment]
+    FOREIGN KEY ([EventId])
+    REFERENCES [dbo].[Events]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_EventComment'
+CREATE INDEX [IX_FK_EventComment]
+ON [dbo].[Comments]
+    ([EventId]);
 GO
 
 -- --------------------------------------------------

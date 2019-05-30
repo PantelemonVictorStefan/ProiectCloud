@@ -4,7 +4,10 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<span class="AntiForge"> @Html.AntiForgeryToken() </span>
+<span class="id">
+    <input name="EventId" type="hidden" value=@Html.DisplayFor(model => model.Id)>
+</span>
 <h2>Details</h2>
 
 <div>
@@ -106,3 +109,57 @@
             }
 </script>
 <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=Ansy_oJvPmucOUMAcGboqpG9vvw8dBspTSkw5LC9x27mpca3A9Y5Zyel_XHCetxc&callback=loadMapScenario' async defer></script>
+
+
+
+
+
+<h3>Comments</h3>
+
+<form id="postComment" method="post" action="../AddComment">
+    @Html.AntiForgeryToken()
+    <input name="EventId" type="hidden" value=@Html.DisplayFor(model => model.Id)>
+
+    <div class="form-horizontal">
+        <h4>Comment</h4>
+        <hr />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+
+</form>
+
+    <textarea onclick="clickedForm()" id="textArea" rows="4" cols="50" name="Text" form="postComment">
+Write a comment...
+</textarea>
+
+
+
+@foreach (var item in Model.Comments)
+{
+    <h4>
+        @Html.DisplayFor(modelItem => item.Author)
+    </h4>
+    <p>
+        @Html.DisplayFor(modelItem => item.Date)
+    </p>
+    <p>
+        @Html.DisplayFor(modelItem => item.Text)
+    </p>
+}
+
+
+<script>
+
+    function clickedForm() {
+        let textArea = document.getElementById("textArea");
+        if (textArea.value == "Write a comment...\n")
+            textArea.value = "";
+    }
+
+</script>
