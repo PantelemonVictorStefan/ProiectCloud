@@ -80,10 +80,22 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+
 
 <style type='text/css'>
     body {
@@ -114,33 +126,39 @@
 
 
 
-<h3>Comments</h3>
 
-<form id="postComment" method="post" action="../AddComment">
-    @Html.AntiForgeryToken()
-    <input name="EventId" type="hidden" value=@Html.DisplayFor(model => model.Id)>
+@if (Request.IsAuthenticated)
+{
 
-    <div class="form-horizontal">
-        <h4>Comment</h4>
-        <hr />
+    <form id="postComment" method="post" action="../AddComment">
+        @Html.AntiForgeryToken()
+        <input name="EventId" type="hidden" value=@Html.DisplayFor(model => model.Id)>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-
-
-</form>
-
-    <textarea onclick="clickedForm()" id="textArea" rows="4" cols="50" name="Text" form="postComment">
+        <div class="form-horizontal">
+            <hr />
+            <textarea onclick="clickedForm()" id="textArea" rows="4" cols="50" name="Text" form="postComment">
 Write a comment...
 </textarea>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+
+}
 
 
 
-@foreach (var item in Model.Comments)
+
+<h3>Comments</h3>
+
+
+@foreach (var item in Model.Comments.OrderByDescending(q=>q.Date))
 {
     <h4>
         @Html.DisplayFor(modelItem => item.Author)

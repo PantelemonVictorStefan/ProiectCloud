@@ -29,12 +29,15 @@ namespace Tema4Cloud.Model
 
         public void UpdateEvent(Event e)
         {
-            var oldEvent=ctx.Events.Find(e.Id);
-
+            //var oldEvent=ctx.Events.Find(e.Id);
+            var oldEvent = ctx.Events.Where(q => q.Id == e.Id).First();
+            //var all = ctx.Events.Include("Location");
             //oldEvent = e;
 
             ctx.Entry(oldEvent).CurrentValues.SetValues(e);
-            oldEvent.Location = e.Location;
+
+            //oldEvent.Location.cur = e.Location;
+            ctx.Entry(oldEvent.Location).CurrentValues.SetValues(e.Location);
             //oldEvent.
             ctx.SaveChanges();
 
@@ -75,6 +78,12 @@ namespace Tema4Cloud.Model
         {
             var itemToDelete = ctx.Accounts.Find(id);
             ctx.Accounts.Remove(itemToDelete);
+            ctx.SaveChanges();
+        }
+
+        public void AddComment(Comment com)
+        {
+            ctx.Comments.Add(com);
             ctx.SaveChanges();
         }
     }

@@ -75,12 +75,13 @@ namespace ProiectCloud.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult AddComment(CommentViewModel com)
+        public ActionResult AddComment(CommentViewModel model)
         {
             
-           com.Author = HttpContext.User.Identity.Name;
-
-           return RedirectToAction("Details/"+com.EventId);
+            model.Author = HttpContext.User.Identity.Name;
+            new EventManager().AddComment(model.GetAsComment());
+            
+            return RedirectToAction("Details/"+model.EventId);
         }
         
     }

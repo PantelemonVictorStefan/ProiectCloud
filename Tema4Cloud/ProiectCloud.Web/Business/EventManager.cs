@@ -102,8 +102,28 @@ namespace ProiectCloud.Web.Business
             }
         }
 
-        public void AddComment(Comment comment)
+        public bool AddComment(Comment comment)
         {
+            using (var client = new HttpClient())
+            {
+                string url = System.Configuration.ConfigurationManager.AppSettings["BaseURL"];
+                client.BaseAddress = new Uri(url);
+                //HTTP POST
+                var responseTask = client.PostAsXmlAsync("Events/"+comment.EventId+"/Comments", comment);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+                    var x = result;
+                    return false;
+                }
+            }
         }
 
     }

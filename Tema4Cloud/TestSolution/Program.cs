@@ -76,17 +76,27 @@ namespace TestSolution
             ev.NumberOfParticipants++;
             ev.Location.Latitude += 10;
 
-            var com = new Comment();
-            com.Author = "Marcel Problema";
-            com.Date = DateTime.Now;
-            com.Text = "Marcel baga comentariu!";
-
-            ev.Comments.Add(com);
+           
             new DataAccessAPI().UpdateEvent(ev);
 
             /*var acc = new DataAccessAPI().GetAllAccounts().First();
             acc.Username = "UpdatedUsername";
             new DataAccessAPI().UpdateAccount(acc);*/
+        }
+
+        public static void AddComment()
+        {
+
+            var com = new Comment();
+            com.Author = "Marcel Problema";
+            com.Date = DateTime.Now;
+            com.Text = "Marcel baga comentariu!";
+
+
+            var ev = new DataAccessAPI().GetAllEvents().First();
+            com.EventId = ev.Id;
+
+            new DataAccessAPI().AddComment(com);
         }
 
         public static void DeleteData()
@@ -126,10 +136,11 @@ namespace TestSolution
         {
             //AddData();
             //ReadData();
-            UpdateData();
+            //UpdateData();
             //ReadData();
             //DeleteData();
             //PopulateDatabase();
+            //AddComment();
             ReadData();
         }
     }

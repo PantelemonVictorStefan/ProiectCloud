@@ -54,5 +54,22 @@ namespace ProiectCloud.Web.Controllers
         {
             new DataAccessAPI().DeleteEvent(id);
         }
+
+
+        [HttpPost]
+        [Route("api/Events/{id}/Comments")]
+        public bool AddComment(int id,Comment comment)
+        {
+            var com = comment;
+            new DataAccessAPI().AddComment(comment);
+            return true;
+        }
+
+        /*[HttpGet]
+        [Route("api/Events/{id}/Comments")]
+        public string GetComments(int id)
+        {
+            return "BLANAOOOO";
+        }*/
     }
 }
